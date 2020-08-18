@@ -1,0 +1,31 @@
+// create model to access schema and create data for model collection
+
+const mongoose = require("mongoose");
+
+var Schema = mongoose.Schema;
+
+var NovelSchema = new mongoose.Schema({
+    novelTitle: {
+        type: String,
+        requried: "Required"
+    },
+    novelAuthorFirstName: {
+        type: String,
+        required: "Required"
+    },
+    novelAuthorLastName: {
+        type: String,
+        required: "Required"
+    },
+    novelId: {
+        type: String,
+    },
+    yearPublished: {
+        type: String
+    },
+    synopsis: {
+        type: String
+    }
+});
+
+mongoose.model("Novel", NovelSchema)

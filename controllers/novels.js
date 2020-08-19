@@ -36,7 +36,7 @@ router.post('/add', function(req, res){
 
 router.get("/list", (req, res)=>{
 
-    NovelModel.find((err, docs)=>{
+    NovelModel.find().lean().exec((err, docs)=>{
       if(!err) {
         console.log(docs);
         // added with Jared's help Aug 13

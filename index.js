@@ -30,7 +30,7 @@ app.set('views', path.join(__dirname, "/views/"));
 app.engine("hbs", expressHandlebars({
     extname : "hbs",
     defaultLayout : "mainlayout",
-    LayoutsDir : __dirname = "views/layouts"
+    LayoutsDir : __dirname + "views/layouts"
 }));
 
 // tell node express to use view engine handlebars

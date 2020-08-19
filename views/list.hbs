@@ -1,15 +1,12 @@
 <h1>Novels</h1>
 
-{{docs}}
-
 <ul class="novel_list">
   {{#each data}}
+    <li>{{novelTitle}}</li>
     <li>{{novelAuthorFirstName}}</li>
-    <li>{{this}}</li>
+    <li>{{novelAuthorLastName}}</li>
   {{/each}}
 </ul>
-
-{{#each data}} <p>{{novelTitle}}</p> <p>{{novelAuthorTitle}}</p> {{/each}}
 
 {{!-- <table>
     <tr>

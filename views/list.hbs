@@ -4,11 +4,12 @@
 
 <ul class="novel_list">
   {{#each data}}
-    {{!-- <li>{{this.novelTitle}}</li> --}}
+    <li>{{novelAuthorFirstName}}</li>
     <li>{{this}}</li>
   {{/each}}
 </ul>
 
+{{#each data}} <p>{{novelTitle}}</p> <p>{{novelAuthorTitle}}</p> {{/each}}
 
 {{!-- <table>
     <tr>

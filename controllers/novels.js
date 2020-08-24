@@ -96,26 +96,35 @@ router.get("/details", (req, res)=>{
   });  
 });
 
-router.get('/delete', function(req, res){
-    console.log(req.url);
-    res.sendFile(process.cwd() + '/views/delete.html');
-  });
-
 // Delete a Novel
-router.delete("/delete", function(req, res){
-    console.log(req.body);
-    var record = req.body;
+router.delete('/:id', (req, res) => {
+  let _id = req.params.id;
+  
+  NovelModel.findOneAndDelete({_id})
+      .then(doc => res.json(doc))
+      .catch(err => res.json({err}))
+})
 
-    NovelModel.deleteOne((err, record)=>{
-    res.deletedCount;
-    if(!err) {
-        res.redirect("/novel/list");
-        }
-    else {
-        res.send("error with delete");
-        }
-    });
-});
+// router.get('/delete', function(req, res){
+//     console.log(req.url);
+//     res.sendFile(process.cwd() + '/views/delete.html');
+//   });
+
+// // Delete a Novel
+// router.delete("/delete", function(req, res){
+//     console.log(req.body);
+//     var record = req.body;
+
+//     NovelModel.deleteOne((err, record)=>{
+//     res.deletedCount;
+//     if(!err) {
+//         res.redirect("/novel/list");
+//         }
+//     else {
+//         res.send("error with delete");
+//         }
+//     });
+// });
 
 // export the router
 module.exports = router;

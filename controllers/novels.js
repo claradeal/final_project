@@ -14,6 +14,7 @@ router.get('/add', function(req, res){
   res.sendFile(process.cwd() + '/views/index.html');
 });
 
+//  Create a Novel
 router.post('/add', function(req, res){
     console.log(req.body);
 
@@ -34,6 +35,7 @@ router.post('/add', function(req, res){
     //   res.sendFile(process.cwd() + '/views/list.html');
 });
 
+// List all Novels
 router.get("/list", (req, res)=>{
 
     NovelModel.find().lean().exec((err, docs)=>{
@@ -50,16 +52,60 @@ router.get("/list", (req, res)=>{
     });  
 });
 
+// Hello there world - hbs.
+router.get('/', function(req, res){
+  console.log(req.url);
+  res.sendFile(process.cwd() + '/views/index.html');
+});
+
+// router.get('/update', function(req, res){
+//   console.log(req.url);
+//   res.sendFile(process.cwd() + '/views/update.html');
+// });
+
+// I am not sure if this is causing problems!
+// router.get('/:id', (req, res) => {
+//   console.log(req.body);
+// });
+
+// Update a Novel
+router.put('/:id', (req, res) => {
+  let _id = req.params.id;
+  let {novelTitle, novelAuthorFirstName, novelAuthorLastName, novelId} = req.body;
+  console.log(req.body);
+
+  NovelModel.findOneAndUpdate({_id}, {novelTitle, novelAuthorFirstName, novelAuthorLastName, novelId}, {new: true})
+      .then(doc => res.json(doc))
+      .catch(err => res.json({err}))
+});
+
+// List Novel Details
+router.get("/details", (req, res)=>{
+
+  NovelModel.find().lean().exec((err, docs)=>{
+    if(!err) {
+      console.log(docs);
+      // added with Jared's help Aug 13
+      res.locals.docs = docs;
+      // res.send({data : docs});
+      res.render("details", { data : docs });
+    }
+    else {
+        res.send("error");
+    }
+  });  
+});
+
 router.get('/delete', function(req, res){
     console.log(req.url);
     res.sendFile(process.cwd() + '/views/delete.html');
   });
 
+// Delete a Novel
 router.delete("/delete", function(req, res){
     console.log(req.body);
     var record = req.body;
-// const res = await Character.remove({ name: 'Eddard Stark' });
-// res.deletedCount; // Number of documents removed
+
     NovelModel.deleteOne((err, record)=>{
     res.deletedCount;
     if(!err) {

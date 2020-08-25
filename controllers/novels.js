@@ -2,8 +2,6 @@
 
 const express = require("express");
 const mongoose = require("mongoose");
-
-// added after talking with Jared on Aug 13 - not sure needed here
 const expressHandlebars = require('express-handlebars');
 
 const router = express.Router();
@@ -32,7 +30,6 @@ router.post('/add', function(req, res){
           res.send("error with post");
       }
     })
-    //   res.sendFile(process.cwd() + '/views/list.html');
 });
 
 // List all Novels

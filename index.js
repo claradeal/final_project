@@ -1,5 +1,4 @@
 // create express application to connect with browser to send responses back to get data
-
 const connection = require("./model");
 const express = require("express");
 // try these two lines
@@ -14,9 +13,17 @@ const app = express();
 
 const novelController = require("./controllers/novels")
 
+// Sept 3 suggested by Gwen and npmjs.com/package/dotenv
+require('dotenv').config()
+
 // Basic Configuration 
-// var port = process.env.PORT || 3000;
-var port = 8080;
+// commented out Aug 27
+// var port = 8080;
+// added Sept 2
+const PORT = process.env.PORT || 3000;
+
+// Aug 30 article suggested:
+console.log(process.env.DATABASEURL)
 
 // not sure I need these 2 lines
 app.use(express.json());
@@ -54,6 +61,9 @@ app.post("/name", function(req, res) {
   });
 
   // this is the server for express and the connection which is done use Node.js
-  app.listen(port, function () {
+  // changed port to PORT and "function ()"" to "() =>"" on Sept 2
+  app.listen(PORT, () => {
     console.log('Server started');
+    // added Aug 30
+    console.log('Our app is running on port ${PORT}');
   });

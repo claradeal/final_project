@@ -43,12 +43,13 @@ app.engine("hbs", expressHandlebars({
 // tell node express to use view engine handlebars
 app.set("view engine", "hbs");
 
-app.get('/', function(req, res){
-  console.log(req.url);
-//   res.sendFile(process.cwd() + '/views/index.html');
-    // res.render("index", {});
-    res.render("index");
-});
+// commented out sept 3
+// app.get('/', function(req, res){
+  // console.log(req.url);
+//  // res.sendFile(process.cwd() + '/views/index.html');
+//    // res.render("index", {});
+    // res.render("index");
+// });
 
 app.use("/novel", novelController);
 
